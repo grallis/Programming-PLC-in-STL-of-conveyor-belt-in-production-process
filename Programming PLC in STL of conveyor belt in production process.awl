@@ -1,0 +1,64 @@
+ORGANIZATION_BLOCK MAIN:OB1
+BEGIN
+
+Network 1   // 1st position
+LD I0.1     // S1
+O M0.1      // K1
+AN M0.0     // relay to STOP K100
+= M0.1
+LDN M0.1
+= Q0.1      // H1
+
+
+Network 2   // 2nd position
+LD I0.2     // S2
+O M0.2      // K2
+AN M0.0     
+= M0.2
+LDN M0.2
+= Q0.2      // H2
+
+
+Network 3   // 3rd position
+LD I0.3     // S3
+O M0.3      // K3
+AN M0.0  
+= M0.3
+LDN M0.3
+= Q0.3     // H3
+
+
+Network 4   // 5 sec delay
+LD M0.1
+A M0.2
+A M0.3
+AN Q0.6     // T2
+TON T37,50  // T1
+LD T37
+= M0.6   // T1
+LD M0.6
+= Q0.5   // relay of conveyor belt K5
+
+
+Network 5   // 15 sec operating time
+LD Q0.5     
+O M0.4
+AN M0.0
+= M0.4
+LD M0.4
+TON T38,150   // T2
+LD T38
+= Q0.6  // T2 output conveyor belt stand by
+
+
+Network 6   //4th position
+LD Q0.6
+A I0.4   // Stop button H4
+= M0.0
+
+
+Network 7
+LD M0.4
+= Q0.4   // light of conveyor belt
+
+END_ORGANIZATION_BLOCK
